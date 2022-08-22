@@ -22,7 +22,6 @@ class Main {
 
             // on enleve le /
             $uri = substr($uri, 0, -1);
-            echo $uri;
             // on envoie un code de redirection permanente
             http_response_code(301);
 
@@ -68,7 +67,6 @@ class Main {
 
             // on appelle la methode index
             $controller->index();
-        }
-        
+        } 
     }
 }
