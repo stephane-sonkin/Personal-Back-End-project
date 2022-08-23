@@ -14,6 +14,32 @@ class UsersModel extends Model {
         $this->table = strtolower(str_replace('Model', '', $class));
     }
 
+
+    /**
+     * Recupérer un user à partir de son email
+     *
+     * @param string $email
+     * @return mixed
+     */
+    public function findOneByEmail(string $email) {
+
+        return $this->requette("SELECT * FROM $this->table WHERE email = ?", [$email])->fetch();
+    }
+
+
+    /**
+     * Crée la session de l'utilisateur
+     *
+     * @return void
+     */
+    public function setSession() {
+
+        $_SESSION['user'] = [
+            'id' => $this->id,
+            'email' => $this->email
+        ];
+    }
+
     /**
      * Get the value of id
      */ 
