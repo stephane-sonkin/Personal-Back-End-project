@@ -43,6 +43,7 @@ class UsersController extends Controller {
 
                 //mauvais mot de passe
                 $_SESSION['erreur'] = "L'adresse e-mail et/ou le mot de passe est incorect";
+                exit;
             }
 
         }

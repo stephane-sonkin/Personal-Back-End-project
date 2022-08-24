@@ -13,7 +13,7 @@ class Model extends DB {
 
     public function findAll() {
 
-        $query = $this->requette('SELECT * FROM '. $this->table);
+        $query = $this->requete('SELECT * FROM '. $this->table);
         return $query->fetchAll();
     }
 
@@ -34,15 +34,15 @@ class Model extends DB {
         // on transforme le tableau "champs" en une chaine de caractères
         $liste_champs = implode(' AND ' , $champs);
 
-        // on execute la requette
-        return $this->requette('SELECT * FROM '.$this->table.' WHERE '. $liste_champs, 
+        // on execute la requete
+        return $this->requete('SELECT * FROM '.$this->table.' WHERE '. $liste_champs, 
         $valeurs)->fetchAll();
     }
 
 
     public function find (int $id) {
 
-        return $this->requette("SELECT * FROM  $this->table WHERE id = $id")->
+        return $this->requete("SELECT * FROM  $this->table WHERE id = $id")->
         fetch();
     }
 
@@ -70,8 +70,8 @@ class Model extends DB {
         $liste_inter = implode(', ', $inter);
 
 
-        // on execute la requette
-        return $this->requette('INSERT INTO '.$this->table.' ('. $liste_champs. ')
+        // on execute la requete
+        return $this->requete('INSERT INTO '.$this->table.' ('. $liste_champs. ')
         VALUES('.$liste_inter.')', $valeurs); 
 
     }
@@ -84,7 +84,7 @@ class Model extends DB {
         // on boucle pour éclater le table
         foreach($this as $champ => $valeur) {
             // UPDATE annonces  SET titre = ?, description = ?, actif = ? WHERE id = ?
-            if ($valeur != null && $champ != 'db' && $champ != 'table') {
+            if ($valeur !== null && $champ != 'db' && $champ != 'table') {
 
                 $champs[] = "$champ = ?";
                 $valeurs[] = $valeur;
@@ -94,22 +94,21 @@ class Model extends DB {
         $valeurs[] = $this->id;
 
         // on transforme le tableau "champs" en une chaine de caractères
-        $liste_champs = implode(' , ' , $champs);
+        $liste_champs = implode(', ', $champs);
 
 
-        // on execute la requette
-        return $this->requette('UPDATE '.$this->table.' SET '. $liste_champs. 
-        'WHERE id = ?', $valeurs);
+        // on execute la requete
+        return $this->requete('UPDATE '.$this->table.' SET '.$liste_champs.' WHERE id = ?', $valeurs);
 
     }
 
 
     public function delete (int $id) {
 
-        return $this->requette("DELETE FROM {$this->table} WHERE id = ?", [$id]);
+        return $this->requete("DELETE FROM {$this->table} WHERE id = ?", [$id]);
     }
 
-    public function requette(string $sql, array $attributs = null) {
+    public function requete(string $sql, array $attributs = null) {
 
         //on recupere l'instance de db
         $this->db = DB::getInstance();
@@ -117,7 +116,7 @@ class Model extends DB {
         //on verifie si on a des attributs
         if ($attributs !== null) {
 
-            //requette préparée
+            //requete préparée
             $query = $this->db->prepare($sql);
             $query->execute($attributs);
             return $query;

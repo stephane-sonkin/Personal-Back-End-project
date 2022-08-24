@@ -8,6 +8,8 @@ class AnnoncesModel extends Model {
     protected $description;
     protected $cree_a;
     protected $actif;
+    protected $users_id;
+
 
     public function __construct(){
         
@@ -110,6 +112,26 @@ class AnnoncesModel extends Model {
     public function setActif($actif)
     {
         $this->actif = $actif;
+
+        return $this;
+    }
+
+        /**
+     * Get the value of users_id
+     */ 
+    public function getUsers_id(): int
+    {
+        return $this->users_id;
+    }
+
+    /**
+     * Set the value of users_id
+     *
+     * @return  self
+     */ 
+    public function setUsers_id(int $users_id)
+    {
+        $this->users_id = $users_id;
 
         return $this;
     }
