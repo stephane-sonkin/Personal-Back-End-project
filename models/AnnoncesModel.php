@@ -99,7 +99,7 @@ class AnnoncesModel extends Model {
     /**
      * Get the value of actif
      */ 
-    public function getActif()
+    public function getActif():int
     {
         return $this->actif;
     }

@@ -120,6 +120,7 @@ class AnnoncesController extends Controller {
 
     /**
      * Modifier une annonce
+     * @param int $id
      */
     public function modifier(int $id) {
 
@@ -133,7 +134,7 @@ class AnnoncesController extends Controller {
             // on cherche l'annonce avec l'id $id
             $annonce = $annoncemodel->find($id);
 
-            // si l'annonce n'existe pas, on retourne à la liste des annpnces
+            // si l'annonce n'existe pas, on retourne à la liste des annonces
             if(!$annonce) {
                 http_response_code(404);
                 $_SESSION['erreur'] = "l'annonce recherchée n'existe pas";
@@ -141,13 +142,17 @@ class AnnoncesController extends Controller {
                 exit;
             }
 
-            // on verifie si l'utilisateur est propriétaire de l'annonce
-            if ($annonce->users_id !== $_SESSION['user']['id']) {
+            // on verifie si l'utilisateur est propriétaire de l'annonce ou admin
+            if ($annonce->users_id !== $_SESSION['user']['id']){
 
-                $_SESSION['erreur'] = "Vous n'avez pas acces à cette page";
-                header('Location : POO_BD/Public/index.php/annonces');
-                exit;
+                if(!in_array('ROLE_ADMIN', $_SESSION['user']['roles'])) {
+
+                    $_SESSION['erreur'] = "Vous n'avez pas accès à cette page";
+                    header('Location : POO_BD/Public/index.php/annonces');
+                    exit;
+                }
             }
+            
 
             // on traite le formulaire
             if (Form::validate($_POST, ['titre', 'description'])) {
@@ -168,7 +173,7 @@ class AnnoncesController extends Controller {
                 $annonceModif->update();
 
                 // on redirige
-                $_SESSION['message'] = "Votre annonce a été modifieé 
+                $_SESSION['message'] = "Votre annonce a été modifiée 
                 avec succès";
                 header('Location : POO_BD/Public/index');
                 exit;
