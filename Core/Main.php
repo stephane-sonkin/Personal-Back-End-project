@@ -1,6 +1,4 @@
 <?php
-// ceci est notre ROUTEUR principal
-
 namespace App\Core;
 
 use App\Controllers\MainController;
@@ -28,7 +26,7 @@ class Main {
             // on envoie un code de redirection permanente
             http_response_code(301);
 
-            // // on redirige vers l'URL sans /
+            // on redirige vers l'URL sans /
             header('Location: '.$uri);
         }
 
@@ -49,9 +47,10 @@ class Main {
             // on instancie le controleur
             $controller = new $controller();
 
-            // on recupere le 2eme parametre de l'URL
+            // on récupere le 2eme parametre de l'URL
             $action = (isset($params[0])) ? array_shift($params) : 'index';
 
+            // on verifie si cette methode existe dans le controller
             if(method_exists($controller, $action)) {
 
                 // si il reste des parametres on les passe à la methode

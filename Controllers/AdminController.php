@@ -28,7 +28,6 @@ class AdminController extends Controller {
 
             $annonces = $annoncesModel->findAll();
 
-            // la fonction compact() nous permets de raccourcir l'expression un tableau associatif annonces => $annonces
             $this->render('admin/annonces', compact('annonces'), 'admin');
         }
 

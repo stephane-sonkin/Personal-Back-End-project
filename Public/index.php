@@ -14,8 +14,8 @@ Autoloader::register();
 
 
 // on instancie Main (notre routeur)
-$app = new Main();
+$app = new Main;
 
 
-//ondemarre l'application dans le routeur (Main)
+//ondemarre l'application dans le routeur (Main.php)
 $app->start();

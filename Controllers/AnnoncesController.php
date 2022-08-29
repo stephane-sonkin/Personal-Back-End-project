@@ -17,7 +17,7 @@ class AnnoncesController extends Controller {
         // on instancie le model correspondant à la table 'annonces' de la BD
         $annoncesModel = new AnnoncesModel;
 
-        // on va chercher toutes les annonces
+        // on va chercher toutes les annonces actives
         $annonces = $annoncesModel->findBy(['actif' => 1]);
 
         // on genere la vue
@@ -59,7 +59,7 @@ class AnnoncesController extends Controller {
 
                 // ici le formulaire est complet
                 // on se protege contre les failles XSS
-                $titre= strip_tags($_POST['titre']);
+                $titre = strip_tags($_POST['titre']);
                 $description = strip_tags($_POST['description']);
 
                 // on instancie notre modèle
@@ -76,7 +76,7 @@ class AnnoncesController extends Controller {
                     // on redirige
                     $_SESSION['message'] = "Votre annonce a été enregistrée 
                     avec succès";
-                    header('Location : POO_BD/Public/index');
+                    header('Location : POO_BD/Public/index.php');
                     exit;
             }else{
                 // le formulaire est incomplet

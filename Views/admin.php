@@ -28,10 +28,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" 
-                        href="admin">Acceuil de l'admin</a>
+                        href="/POO_BD/Public/index.php/admin">Acceuil de l'admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="annonces">
+                        <a class="nav-link" href="/POO_BD/Public/index.php/annonces">
                         Liste des annonces</a>
                     </li>
                 </ul>

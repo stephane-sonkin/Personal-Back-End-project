@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 /**
  * Controleur principal
+ * Envoie du contenu aux differentes vues
  */
 
 abstract class Controller {
@@ -16,9 +17,9 @@ abstract class Controller {
 
         // on demare le buffer de sortie
         ob_start();
-        // a partir de ce point toute sortie est concervee en memoire
+        // a partir de ce point toute sortie est concervée en memoire
                 
-        // ici on cree le chemin d'acces vers la vue
+        // ici on crée le chemin d'accès vers la vue
         require_once ROOT.'/Views/'.$fichier.'.php';
         
         // on transfere le buffer dans $contenu
