@@ -5,7 +5,7 @@ This site allows you to make one or more ad. It is made for people would like to
 
 ## STRUCTURE
 
-The MVC structure is well implemented in this application without using a framework. The CRUD operations are functional, the hydration as well. The authentication is created using the $_SESSION superglobal variable
+The MVC structure is well implemented in this application without using a framework. The CRUD operations are functional, the hydration and the formBuilder as well. The authentication is created using the $_SESSION superglobal variable
 
 
 ## Lessons Learned
